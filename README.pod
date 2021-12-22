@@ -1,0 +1,66 @@
+<h1 id="introduction">Introduction</h1>
+<p>FER2013 is a challenging datasets with human-level accuracy only at 65 ± 5 %. It is not a balanced dataset, as it contains images of 7 facial expressions, with distributions of Angry (4953), Disgust (547), Fear (5121), Happy (8989), Sad (6077), Surprise (4002), and Neutral (6198). In addition to that the depicted faces vary significantly in terms of person age, face pose, and other factors, reflecting realistic conditions.</p>
+<h2 id="dataset-description">Dataset description</h2>
+<p>The data consists of 48x48 pixel grayscale images of faces. The faces have been automatically registered so that the face is more or less centered and occupies about the same amount of space in each image. The task is to categorize each face based on the emotion shown in the facial expression in to one of seven categories (0=Angry, 1=Disgust, 2=Fear, 3=Happy, 4=Sad, 5=Surprise, 6=Neutral).</p>
+<p>The dataset contains three columns, ’emotion’, ’pixels ’, and ’Usage’. The ’emotion’ column contains a numeric code ranging from 0 to 6, inclusive, for the emotion that is present in the image. The ’pixels’ column contains a string surrounded in quotes for each image. The contents of this string a space-separated pixel values in row major order. The ’Usage’ column contains the purpose of the data (e.g. test set or training set).</p>
+<p>The training set consists of 28,709 examples. The public test set used for the leaderboard consists of 3589 examples. The final test set consists of another 3589 examples. <span class="citation" data-cites="Goodfeli-et-al-2013">(Goodfellow et al. 2013)</span></p>
+<h1 id="the-model">The model</h1>
+<p>The model was chosen taking inspiration from the work of <span class="citation" data-cites="9425073">(Vulpe-Grigoraşi and Grigore 2021)</span>, in this paper they used Random Search Algorithms which are an automated method capable of generating models with various architectures and different configurations of hyperparameters from a discrete space of possible solutions that can be applied in the imposed problem. They selected a single model out of 500 which provided an accuracy of 69.96% on the validation data after 750 epochs. As we are unable (both because of hardare and because of time) of reaching such a running time the network was slightly tweaked. For example the last Softmax layer was removed as not useful for the type of loss used <span class="citation" data-cites="stevens2020learning">(Stevens, Antiga, and Viehmann 2020)</span> and because it degratated performance.</p>
+<h2 id="hyperparameters">Hyperparameters</h2>
+<h3 id="transformations">Transformations</h3>
+<p>Several transformation were tried (mirroring, shifting, cropping) also for addressing the unbalance in the data however at the the following were chosen:</p>
+<ul>
+<li><p>RandomHorizontalFlip;</p></li>
+<li><p>Normalize.</p></li>
+</ul>
+<p>This refers to the training set, in addition to that we normalized all the data and because we used ToTensor combined with uint8 type of data we had our data automatically scaled according to <span class="citation" data-cites="stevens2020learning">(Stevens, Antiga, and Viehmann 2020)</span>.</p>
+<h3 id="loss">Loss</h3>
+<p>CrossEntropyLoss was used given that we are dealing with a classification problem, because of how the loss is defined in PyTorch there was no need to Hot-Encode the labels <span class="citation" data-cites="stevens2020learning">(Stevens, Antiga, and Viehmann 2020)</span>.</p>
+<h3 id="optimizer">Optimizer</h3>
+<p>SGD with momentum and SGD Nesterov were the main optimizer tried as suggested by <span class="citation" data-cites="DBLP:journals/corr/abs-2105-03588">(Khaireddin and Chen 2021)</span> but experimentally nothing performed as well as Adam, which was the one used. The learning rate used was 0.001 as almost all the papers consulted agreed on this value.</p>
+<h3 id="epoch-and-batches">Epoch and batches</h3>
+<p>The batch size used is 128 according to <span class="citation" data-cites="9425073">(Vulpe-Grigoraşi and Grigore 2021)</span>. The maximum number of epochs that we were able to train was 20.</p>
+<h1 id="conclusions">Conclusions</h1>
+<p>At the end the following was obtained:</p>
+<ul>
+<li><p>A loss of 0.8817 on the training set.</p></li>
+<li><p>A loss of 0.9406 on the validation set.</p></li>
+<li><p>An accuracy of 66.95% on the validation set.</p></li>
+<li><p>An accuracy of 62.62% on the test set.</p></li>
+</ul>
+<p>It goes without saying that in order to get close to the actual state of the art it is necessary to apply transfer learning techniques on already known network (e.g. VGG16) as in <span class="citation" data-cites="DBLP:journals/corr/abs-2105-03588">(Khaireddin and Chen 2021)</span> and <span class="citation" data-cites="DBLP:journals/corr/abs-2004-11823">(Khanzada, Bai, and Celepcikay 2020)</span>.</p>
+<p>The result obtained however are worse than <span class="citation" data-cites="9425073">(Vulpe-Grigoraşi and Grigore 2021)</span> mostly because of the limited number of epochs<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> and because of the different transformations at the beginning as for some reason the one suggested in the paper seemed to decrease the performance of the network. The last reason is that the model is somewhat different (we already stated the removal of some layer, but even stride was added and so on); those decision were made only by trying and seeing the outcome without too much, if none at all, theory or references behind.</p>
+<p>In addition to that there seems to be a <a href="https://github.com/pytorch/pytorch/issues/18182">problem</a> with weight initialization in PyTorch that might provide better performance on the dataset using other libraries.</p>
+<p>The result are not satisfactory, unfortunately lack of time and hardware played a major role in this work as probability keep going in this direction could have provided some valid results.</p>
+<figure>
+<img src="img/model.png" style="height:19cm" alt="A graphical representation of the model." /><figcaption aria-hidden="true">A graphical representation of the model.</figcaption>
+</figure>
+<figure>
+<img src="img/loss.jpg" id="fig:loss" alt="Loss." /><figcaption aria-hidden="true">Loss.</figcaption>
+</figure>
+<figure>
+<img src="img/accuracy.jpg" alt="Accuracy." /><figcaption aria-hidden="true">Accuracy.</figcaption>
+</figure>
+<div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">
+<div id="ref-Goodfeli-et-al-2013" class="csl-entry" role="doc-biblioentry">
+Goodfellow, Ian, Dumitru Erhan, Pierre-Luc Carrier, Aaron Courville, Mehdi Mirza, Ben Hamner, Will Cukierski, et al. 2013. <span>“Challenges in Representation Learning: A Report on Three Machine Learning Contests.”</span> Unicer. <a href="http://arxiv.org/abs/1307.0414">http://arxiv.org/abs/1307.0414</a>.
+</div>
+<div id="ref-DBLP:journals/corr/abs-2105-03588" class="csl-entry" role="doc-biblioentry">
+Khaireddin, Yousif, and Zhuofa Chen. 2021. <span>“Facial Emotion Recognition: State of the Art Performance on <span>Fer2013</span>.”</span> <em>CoRR</em> abs/2105.03588. <a href="https://arxiv.org/abs/2105.03588">https://arxiv.org/abs/2105.03588</a>.
+</div>
+<div id="ref-DBLP:journals/corr/abs-2004-11823" class="csl-entry" role="doc-biblioentry">
+Khanzada, Amil, Charles Bai, and Ferhat Turker Celepcikay. 2020. <span>“Facial Expression Recognition with Deep Learning.”</span> <em>CoRR</em> abs/2004.11823. <a href="https://arxiv.org/abs/2004.11823">https://arxiv.org/abs/2004.11823</a>.
+</div>
+<div id="ref-stevens2020learning" class="csl-entry" role="doc-biblioentry">
+Stevens, Eli, Luca Antiga, and Thomas Viehmann. 2020. <em>Deep Learning with PyTorch</em>. <a href="https://pytorch.org/assets/deep-learning/Deep-Learning-with-PyTorch.pdf">https://pytorch.org/assets/deep-learning/Deep-Learning-with-PyTorch.pdf</a>.
+</div>
+<div id="ref-9425073" class="csl-entry" role="doc-biblioentry">
+Vulpe-Grigoraşi, Adrian, and Ovidiu Grigore. 2021. <span>“Convolutional Neural Network Hyperparameters Optimization for Facial Emotion Recognition.”</span> In <em>2021 12th International Symposium on Advanced Topics in Electrical Engineering (ATEE)</em>, 1–5. <a href="https://doi.org/10.1109/ATEE52255.2021.9425073">https://doi.org/10.1109/ATEE52255.2021.9425073</a>.
+</div>
+</div>
+<section class="footnotes footnotes-end-of-document" role="doc-endnotes">
+<hr />
+<ol>
+<li id="fn1" role="doc-endnote"><p>Looking at figure <a href="#fig:loss" data-reference-type="ref" data-reference="fig:loss">1</a> there seems to be a sign of overfitting in the last few epochs, but looking at the past epochs is reasonable to suppose that it could be something periodic.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section>
