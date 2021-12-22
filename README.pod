@@ -41,21 +41,22 @@
 <figure>
 <img src="img/accuracy.jpg" alt="Accuracy." /><figcaption aria-hidden="true">Accuracy.</figcaption>
 </figure>
+<hr />
 <div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">
 <div id="ref-Goodfeli-et-al-2013" class="csl-entry" role="doc-biblioentry">
-Goodfellow, Ian, Dumitru Erhan, Pierre-Luc Carrier, Aaron Courville, Mehdi Mirza, Ben Hamner, Will Cukierski, et al. 2013. <span>“Challenges in Representation Learning: A Report on Three Machine Learning Contests.”</span> Unicer. <a href="http://arxiv.org/abs/1307.0414">http://arxiv.org/abs/1307.0414</a>.
+- Goodfellow, Ian, Dumitru Erhan, Pierre-Luc Carrier, Aaron Courville, Mehdi Mirza, Ben Hamner, Will Cukierski, et al. 2013. <span>“Challenges in Representation Learning: A Report on Three Machine Learning Contests.”</span> Unicer. <a href="http://arxiv.org/abs/1307.0414">http://arxiv.org/abs/1307.0414</a>.
 </div>
 <div id="ref-DBLP:journals/corr/abs-2105-03588" class="csl-entry" role="doc-biblioentry">
-Khaireddin, Yousif, and Zhuofa Chen. 2021. <span>“Facial Emotion Recognition: State of the Art Performance on <span>Fer2013</span>.”</span> <em>CoRR</em> abs/2105.03588. <a href="https://arxiv.org/abs/2105.03588">https://arxiv.org/abs/2105.03588</a>.
+- Khaireddin, Yousif, and Zhuofa Chen. 2021. <span>“Facial Emotion Recognition: State of the Art Performance on <span>Fer2013</span>.”</span> <em>CoRR</em> abs/2105.03588. <a href="https://arxiv.org/abs/2105.03588">https://arxiv.org/abs/2105.03588</a>.
 </div>
 <div id="ref-DBLP:journals/corr/abs-2004-11823" class="csl-entry" role="doc-biblioentry">
-Khanzada, Amil, Charles Bai, and Ferhat Turker Celepcikay. 2020. <span>“Facial Expression Recognition with Deep Learning.”</span> <em>CoRR</em> abs/2004.11823. <a href="https://arxiv.org/abs/2004.11823">https://arxiv.org/abs/2004.11823</a>.
+- Khanzada, Amil, Charles Bai, and Ferhat Turker Celepcikay. 2020. <span>“Facial Expression Recognition with Deep Learning.”</span> <em>CoRR</em> abs/2004.11823. <a href="https://arxiv.org/abs/2004.11823">https://arxiv.org/abs/2004.11823</a>.
 </div>
 <div id="ref-stevens2020learning" class="csl-entry" role="doc-biblioentry">
-Stevens, Eli, Luca Antiga, and Thomas Viehmann. 2020. <em>Deep Learning with PyTorch</em>. <a href="https://pytorch.org/assets/deep-learning/Deep-Learning-with-PyTorch.pdf">https://pytorch.org/assets/deep-learning/Deep-Learning-with-PyTorch.pdf</a>.
+- Stevens, Eli, Luca Antiga, and Thomas Viehmann. 2020. <em>Deep Learning with PyTorch</em>. <a href="https://pytorch.org/assets/deep-learning/Deep-Learning-with-PyTorch.pdf">https://pytorch.org/assets/deep-learning/Deep-Learning-with-PyTorch.pdf</a>.
 </div>
 <div id="ref-9425073" class="csl-entry" role="doc-biblioentry">
-Vulpe-Grigoraşi, Adrian, and Ovidiu Grigore. 2021. <span>“Convolutional Neural Network Hyperparameters Optimization for Facial Emotion Recognition.”</span> In <em>2021 12th International Symposium on Advanced Topics in Electrical Engineering (ATEE)</em>, 1–5. <a href="https://doi.org/10.1109/ATEE52255.2021.9425073">https://doi.org/10.1109/ATEE52255.2021.9425073</a>.
+- Vulpe-Grigoraşi, Adrian, and Ovidiu Grigore. 2021. <span>“Convolutional Neural Network Hyperparameters Optimization for Facial Emotion Recognition.”</span> In <em>2021 12th International Symposium on Advanced Topics in Electrical Engineering (ATEE)</em>, 1–5. <a href="https://doi.org/10.1109/ATEE52255.2021.9425073">https://doi.org/10.1109/ATEE52255.2021.9425073</a>.
 </div>
 </div>
 <section class="footnotes footnotes-end-of-document" role="doc-endnotes">
