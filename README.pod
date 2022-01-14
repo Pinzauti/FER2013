@@ -8,7 +8,7 @@
 <p>The model was chosen taking inspiration from the work of <span class="citation" data-cites="9425073">(Vulpe-Grigoraşi and Grigore 2021)</span>, in this paper they used Random Search Algorithms which are an automated method capable of generating models with various architectures and different configurations of hyperparameters from a discrete space of possible solutions that can be applied in the imposed problem. They selected a single model out of 500 which provided an accuracy of 69.96% on the validation data after 750 epochs. As we are unable (both because of hardare and because of time) of reaching such a running time the network was slightly tweaked. For example the last Softmax layer was removed as not useful for the type of loss used <span class="citation" data-cites="stevens2020learning">(Stevens, Antiga, and Viehmann 2020)</span> and because it degratated performance.</p>
 <h2 id="hyperparameters">Hyperparameters</h2>
 <h3 id="transformations">Transformations</h3>
-<p>Several transformation were tried (mirroring, shifting, cropping) also for addressing the unbalance in the data however at the the following were chosen:</p>
+<p>Several transformation were tried (mirroring, shifting, cropping) also for addressing the unbalance in the data however at the end the following were chosen:</p>
 <ul>
 <li><p>RandomHorizontalFlip;</p></li>
 <li><p>Normalize.</p></li>
